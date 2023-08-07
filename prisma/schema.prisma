@@ -11,8 +11,44 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  email        String  @unique
+  id           String   @id @default(uuid())
+  email        String   @unique
   password     String
+  username     String
+  bio          String?
   profileImage String?
+  threads      Thread[]
+}
+
+model Thread {
+  id         String     @id @default(cuid())
+  authorId   String
+  authorName String
+  image      String?
+  captions   String
+  User       User?      @relation(fields: [userId], references: [id])
+  userId     String?
+  createdAt  Int
+  likes      Likes[]
+  comments   Comments[]
+}
+
+model Comments {
+  id          String  @id @default(cuid())
+  authorName  String
+  authorImage String
+  authorEmail String
+  createdAt   Int
+  Thread      Thread? @relation(fields: [threadId], references: [id])
+  threadId    String?
+}
+
+model Likes {
+  id          String  @id @default(cuid())
+  authorId    String
+  authorNames String
+  authorImage String
+  createdDate Int
+  Thread      Thread? @relation(fields: [threadId], references: [id])
+  threadId    String?
 }

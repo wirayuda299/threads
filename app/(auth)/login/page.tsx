@@ -10,9 +10,5 @@ export default function Login() {
 			password: '',
 		});
 	};
-	return (
-		<section className='w-full h-screen max-w-lg mx-auto flex flex-col justify-center'>
-			<Form type='login' />
-		</section>
-	);
+	return <Form type='login' />;
 }

@@ -7,7 +7,8 @@ export const signUp = async (
 	password: string,
 	setLoading: Dispatch<SetStateAction<boolean>>,
 	profileImage: string,
-	router: AppRouterInstance
+	router: AppRouterInstance,
+	username: string
 ) => {
 	setLoading(true);
 
@@ -21,6 +22,8 @@ export const signUp = async (
 				email,
 				password,
 				profileImage,
+				username,
+				bio: '',
 			}),
 		});
 		await registerUser.json();
