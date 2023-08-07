@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
+import LogOut from './profile/logout';
 
 export default async function Home() {
 	const users = await prisma?.user.findMany();
@@ -14,9 +15,10 @@ export default async function Home() {
 						height={50}
 						alt={user.email}
 					/>
-					<span>{user.email}</span>
+					<span>{user.username}</span>
 				</div>
 			))}
+			<LogOut />
 		</main>
 	);
 }
