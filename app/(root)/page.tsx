@@ -1,15 +1,25 @@
-import Image from 'next/image';
-import prisma from '@/lib/prisma';
 import LogOut from './profile/logout';
-import { ThreadUpload } from '@/components';
+import { Card } from '@/components';
+import prisma from '@/lib/prisma';
 
 export default async function Home() {
-	const users = await prisma?.user.findMany();
+	const threads = await prisma.thread.findMany({
+		orderBy: { createdAt: 'desc' },
+	});
 
 	return (
-		<main className='w-full'>
+		<main className='w-full h-screen overflow-y-auto p-5'>
 			<LogOut />
-			<ThreadUpload />
+			<section className='flex flex-col gap-5 h-full'>
+				{threads.map((thread) => (
+					<Card
+						authorLogo={thread.authorImage ?? ''}
+						authorName={thread.authorName}
+						captions={thread.captions}
+						key={thread.id}
+					/>
+				))}
+			</section>
 		</main>
 	);
 }

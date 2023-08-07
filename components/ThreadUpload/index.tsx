@@ -1,12 +1,16 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 export default function ThreadUpload() {
 	const [loading, setLoading] = useState(false);
 	const session = useSession();
+	const navigate = useRouter();
+
 	const {
 		register,
 		handleSubmit,
@@ -28,8 +32,9 @@ export default function ThreadUpload() {
 					captions: data?.captions,
 				}),
 			});
-			const apires = await res.json();
-			console.log(apires);
+			await res.json();
+			navigate.push('/');
+			toast.success('Thread upload sucessfully');
 		} catch (error: any) {
 			console.log(error.message);
 		} finally {
