@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm, FieldValues } from 'react-hook-form';
+import img from '../../public/assets/placeholder.png';
 
 import { signUp } from '@/utils/signUp';
 import { signInUser } from '@/utils/signIn';
@@ -24,7 +25,13 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
 
 	const onSubmit = async (data: FieldValues) => {
 		if (type === 'register') {
-			return await signUp(data.email, data.password, setLoading);
+			return await signUp(
+				data.email,
+				data.password,
+				setLoading,
+				img.src,
+				router
+			);
 		}
 		return signInUser(data.email, data.password, router);
 	};

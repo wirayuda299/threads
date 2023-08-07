@@ -1,5 +1,6 @@
-import Form from '@/components/form';
 import { signIn } from 'next-auth/react';
+
+import { Form } from '@/components';
 
 export default function Login() {
 	const loginUser = async () => {
