@@ -30,6 +30,6 @@ export const options: AuthOptions = {
 		}),
 	],
 	pages: {
-		signIn: '/register',
+		signIn: '/login',
 	},
 };

@@ -17,10 +17,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<NextAuthProvider>
-					{children}
-					<Toaster />
-				</NextAuthProvider>
+				<NextAuthProvider>{children}</NextAuthProvider>
+				<Toaster />
 			</body>
 		</html>
 	);
