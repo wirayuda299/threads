@@ -1,10 +1,13 @@
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { Dispatch, SetStateAction } from 'react';
 import toast from 'react-hot-toast';
 
 export const signUp = async (
 	email: string,
 	password: string,
-	setLoading: Dispatch<SetStateAction<boolean>>
+	setLoading: Dispatch<SetStateAction<boolean>>,
+	profileImage: string,
+	router: AppRouterInstance
 ) => {
 	setLoading(true);
 
@@ -17,15 +20,16 @@ export const signUp = async (
 			body: JSON.stringify({
 				email,
 				password,
+				profileImage,
 			}),
 		});
 		await registerUser.json();
 
 		setLoading(false);
 		toast.success('Account created! Redirecting to login...');
+		router.push('/login');
 	} catch (error) {
 		setLoading(false);
 		toast.success('Something went wrong...');
-		
 	}
 };
