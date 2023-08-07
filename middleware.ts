@@ -7,9 +7,10 @@ export default async function middleware(req: NextRequest) {
 	const session = await getSession(req);
 
 	if (!session && path === '/') {
-		return NextResponse.redirect(new URL('/register', req.url));
+		return NextResponse.redirect(new URL('/login	', req.url));
+	} else {
+		return NextResponse.next();
 	}
-	return NextResponse.next();
 }
 export const config = {
 	matcher: '/((?!api|_next/static|_next/image|favicon.ico).*)',
