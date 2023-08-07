@@ -18,15 +18,16 @@ model User {
 }
 
 model Thread {
-  id         String     @id @default(cuid())
-  authorName String
-  image      String?
-  captions   String
-  userId     String?
-  createdAt  String
-  comments   Comments[]
-  likes      Likes[]
-  User       User?      @relation(fields: [userId], references: [id])
+  id          String     @id @default(cuid())
+  authorName  String
+  authorImage String
+  image       String?
+  captions    String
+  userId      String?
+  createdAt   String
+  comments    Comments[]
+  likes       Likes[]
+  User        User?      @relation(fields: [userId], references: [id])
 }
 
 model Comments {

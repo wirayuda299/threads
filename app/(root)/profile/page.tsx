@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import LogOut from './logout';
 import { Tabs } from '@/components';
 
 export default async function Profile() {

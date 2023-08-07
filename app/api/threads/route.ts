@@ -23,6 +23,7 @@ export async function POST(req: Request, res: Response) {
 				authorName: user.username,
 				captions,
 				createdAt: Date.now().toString(),
+				authorImage: user.profileImage as string,
 			},
 		});
 		return NextResponse.json({

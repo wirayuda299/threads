@@ -1,7 +1,8 @@
 'use client';
 import Image from 'next/image';
-import { tabsValue } from '@/constant/tabs';
 import { useState } from 'react';
+
+import { tabsValue } from '@/constant';
 
 type TabItem = (typeof tabsValue)[number];
 type ActiveTab = TabItem['label'];
