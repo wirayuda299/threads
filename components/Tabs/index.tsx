@@ -4,11 +4,6 @@ import { useState } from 'react';
 
 import { tabsValue } from '@/constant';
 
-type TabItem = (typeof tabsValue)[number];
-type ActiveTab = TabItem['label'];
-
-type LowercaseTabLabels = { [K in ActiveTab]: Lowercase<ActiveTab> }[ActiveTab];
-
 export default function Tabs() {
 	const [activeTab, setActiveTab] = useState<string>('Threads');
 	return (

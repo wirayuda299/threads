@@ -15,7 +15,7 @@ export default function Card({ captions, authorLogo, authorName }: CardProps) {
 		'/assets/placeholder.png',
 	];
 	return (
-		<div className=' bg-[#121417] min-h-[15rem] rounded-lg max-w-[600px] p-5 overflow-hidden'>
+		<div className=' bg-[#121417] min-h-[15rem] rounded-lg w-full h-full p-5 overflow-hidden'>
 			<div className='flex gap-4 justify-start'>
 				<div className='flex flex-col w-min items-center'>
 					<Image

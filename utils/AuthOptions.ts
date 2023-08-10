@@ -1,7 +1,8 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '@/lib/prisma';
-import { AuthOptions } from 'next-auth';
+import { AuthOptions, Session } from 'next-auth';
 import { compare } from 'bcrypt';
+import { JWT } from 'next-auth/jwt';
 
 export const options: AuthOptions = {
 	providers: [
@@ -10,7 +11,6 @@ export const options: AuthOptions = {
 				email: { label: 'Email', type: 'email' },
 				password: { label: 'Password', type: 'password' },
 			},
-			// @ts-ignore
 			async authorize(credentials) {
 				const { email, password } = credentials ?? {};
 				if (!email || !password) {
@@ -29,6 +29,15 @@ export const options: AuthOptions = {
 			},
 		}),
 	],
+	callbacks: {
+		async session({ session, token }: { session: Session; token: JWT }) {
+			if (session && session.user) {
+				session.user.username = session.user.username;
+				session.user.uid = token.sub as string;
+			}
+			return session;
+		},
+	},
 	pages: {
 		signIn: '/login',
 	},
