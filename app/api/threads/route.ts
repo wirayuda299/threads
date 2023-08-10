@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import prisma from '@/lib/prisma';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(req: Request, res: Response) {
 	const { email, captions } = await req.json();
@@ -26,9 +27,12 @@ export async function POST(req: Request, res: Response) {
 				authorImage: user.profileImage as string,
 			},
 		});
+		revalidatePath('/');
 		return NextResponse.json({
 			message: 'Thread successfully created',
 			status: 200,
+			revalidated: true,
+			now: Date.now(),
 		});
 	} catch (error: any) {
 		return NextResponse.json({ message: error.message });
