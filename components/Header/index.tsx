@@ -3,13 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Menu from './Menu';
 import { getUser } from '@/utils/getUser';
-import { redirect } from 'next/navigation';
 
 export default async function Header() {
 	const session = await getServerSession();
 	const user = await getUser(session?.user.email as string);
-
-	if (!user || !session) return redirect('/login');
 
 	return (
 		<header className='w-full h-20 bg-primary flex justify-between items-center p-5 text-white'>
@@ -27,7 +24,7 @@ export default async function Header() {
 			</div>
 			<div className='inline-flex items-center gap-2'>
 				<Menu />
-				<p>{user.username}</p>
+				<p>{user && user.username}</p>
 			</div>
 		</header>
 	);
