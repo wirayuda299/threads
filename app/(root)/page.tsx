@@ -1,4 +1,3 @@
-import LogOut from './profile/logout';
 import { Card } from '@/components';
 import prisma from '@/lib/prisma';
 
@@ -8,9 +7,8 @@ export default async function Home() {
 	});
 
 	return (
-		<main className='w-full h-screen overflow-y-auto p-5'>
-			<LogOut />
-			<section className='flex flex-col gap-5 h-full'>
+		<main className='w-full h-screen  overflow-y-auto p-5'>
+			<section className='flex flex-col gap-5 pb-20'>
 				{threads.map((thread) => (
 					<Card
 						authorLogo={thread.authorImage ?? ''}

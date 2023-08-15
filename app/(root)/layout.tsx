@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Sidebar, Header } from '@/components';
+import { Sidebar, Header, SuggestedCommunities } from '@/components';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
@@ -9,6 +9,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<section className='flex'>
 				<Sidebar />
 				{children}
+				<SuggestedCommunities />
 			</section>
 		</main>
 	);
