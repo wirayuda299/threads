@@ -10,7 +10,7 @@ export default function Sidebar() {
 	const pathname = usePathname();
 
 	return (
-		<aside className='w-full bg-[#121417] fixed bottom-0 h-20 md:h-screen md:w-[250px] lg:w-[280px] md:static'>
+		<aside className='w-full bg-primary fixed bottom-0 h-20 md:h-screen max-w-[250px] md:static'>
 			<nav className='w-full h-full p-5'>
 				<ul className='w-full h-full flex md:flex-col justify-evenly items-center md:justify-start  gap-2 md:gap-6 '>
 					{sidebarLinks.map((item) => (
