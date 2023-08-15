@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import './globals.css';
-import { Toaster } from 'react-hot-toast';
 import NextAuthProvider from '@/Provider/NextAuth';
 
 export const metadata: Metadata = {

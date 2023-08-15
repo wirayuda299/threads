@@ -3,6 +3,15 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
+export async function GET() {
+	try {
+		const threads = await prisma.thread.findMany();
+		return NextResponse.json(threads);
+	} catch (error) {
+		return NextResponse.json(error);
+	}
+}
+
 export async function POST(req: Request, res: Response) {
 	const { email, captions } = await req.json();
 
