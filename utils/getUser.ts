@@ -7,6 +7,7 @@ export async function getUser(email: string) {
 			select: {
 				email: true,
 				username: true,
+				profileImage: true,
 			},
 		});
 		return user;
