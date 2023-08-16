@@ -21,3 +21,18 @@ export const getThreads = async () => {
 		console.error(error);
 	}
 };
+
+export const getThreadsByCurrentUser = async (username: string) => {
+	try {
+		if (!username) throw new Error('Username is required');
+
+		const res = await prisma?.thread.findMany({
+			where: {
+				authorName: username,
+			},
+		});
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};

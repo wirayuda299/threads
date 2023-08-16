@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -33,6 +34,7 @@ export default function ThreadUpload() {
 				}),
 			});
 			await res.json();
+			revalidatePath('/');
 			navigate.push('/');
 			toast.success('Thread upload sucessfully');
 		} catch (error: any) {

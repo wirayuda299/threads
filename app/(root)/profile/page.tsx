@@ -3,23 +3,18 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 import { Card, Tabs } from '@/components';
+import { getThreadsByCurrentUser, getUser } from '@/utils';
 
 export default async function Profile() {
 	const session = await getServerSession();
 
 	if (!session) return redirect('/login');
 
-	const currentUser = await prisma?.user.findFirst({
-		where: {
-			email: session?.user?.email as string,
-		},
-	});
+	const currentUser = await getUser(session.user.email as string);
 
-	const threadsByCurrentUser = await prisma?.thread.findMany({
-		where: {
-			authorName: session?.user.username,
-		},
-	});
+	const threadsByCurrentUser = await getThreadsByCurrentUser(
+		currentUser?.username as string
+	);
 
 	return (
 		<div className='w-full h-screen overflow-y-auto p-10'>

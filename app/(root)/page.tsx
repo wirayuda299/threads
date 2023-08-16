@@ -1,5 +1,5 @@
 import { Card } from '@/components';
-import { getThreads } from '../../utils/getThreads';
+import { getThreads } from '@/utils';
 
 export default async function Home() {
 	const threads = await getThreads();
