@@ -5,6 +5,8 @@ import { Toaster } from 'react-hot-toast';
 
 import './globals.css';
 import NextAuthProvider from '@/Provider/NextAuth';
+import { getServerSession } from 'next-auth';
+import { options } from '@/utils';
 
 export const metadata: Metadata = {
 	title: 'Threads',
@@ -13,11 +15,17 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+	children,
+}: {
+	children: ReactNode;
+}) {
+	const session = await getServerSession(options);
+
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<NextAuthProvider>{children}</NextAuthProvider>
+				<NextAuthProvider session={session}>{children}</NextAuthProvider>
 				<Toaster />
 			</body>
 		</html>
