@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 export default function SuggestedCommunities() {
 	const communities = [
 		{
@@ -16,8 +17,8 @@ export default function SuggestedCommunities() {
 	];
 
 	return (
-		<aside className='min-w-[250px] bg-primary p-5 hidden lg:block'>
-			<h2 className='text-2xl font-semibold pb-5'>Suggested Communities</h2>
+		<aside className=' min-w-[300px] bg-main p-5 lg:block'>
+			<h2 className='pb-5 text-2xl font-semibold'>Suggested Communities</h2>
 			<ul className='flex flex-col gap-5'>
 				{communities.map((community) => (
 					<li
@@ -29,7 +30,7 @@ export default function SuggestedCommunities() {
 							width={50}
 							height={50}
 							alt={community.label}
-							className='w-10 h-10 object-contain'
+							className='h-10 w-10 object-contain'
 						/>
 						{community.label}
 					</li>

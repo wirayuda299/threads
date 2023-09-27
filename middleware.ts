@@ -1,16 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from './utils/getSession';
+import { authMiddleware } from '@clerk/nextjs';
 
-export default async function middleware(req: NextRequest) {
-	const path = req.nextUrl.pathname;
+export default authMiddleware({
+	apiRoutes: '/api/thread',
+	ignoredRoutes: ['/((?!api|trpc))(_next.*|.+.[w]+$)', '/api/thread'],
+});
 
-	const session = await getSession(req);
-
-	if (!session && path === '/') {
-		return NextResponse.redirect(new URL('/login	', req.url));
-	}
-	return NextResponse.next();
-}
 export const config = {
-	matcher: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+	matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/(api|trpc)(.*)'],
 };

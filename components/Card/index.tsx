@@ -1,35 +1,48 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-import { actionsButtons } from '@/constant';
+import ActionButton from './ActionButtons';
 
 type CardProps = {
 	captions: string;
 	authorName: string;
-	authorLogo: string;
+	authorImage: string;
+	id: string;
+	likes: string[];
 };
 
-export default function Card({ captions, authorLogo, authorName }: CardProps) {
+export default function Card({
+	captions,
+	authorImage,
+	authorName,
+	id,
+	likes,
+}: CardProps) {
 	const comments = [
 		'/assets/placeholder.png',
 		'/assets/placeholder.png',
 		'/assets/placeholder.png',
 	];
 	return (
-		<div className=' bg-[#121417] min-h-[15rem] rounded-lg w-full h-full p-5 overflow-hidden'>
-			<div className='flex gap-4 justify-start'>
-				<div className='flex flex-col w-min items-center'>
+		<div className=' mt-5 min-h-min flex-1 overflow-hidden rounded-lg bg-main p-5'>
+			<div className='flex h-full justify-start gap-4'>
+				<div className=' flex min-w-[50px] flex-col items-center'>
 					<Image
-						className='w-10 h-10 mb-2'
-						src={authorLogo}
+						className='mb-2 h-12 w-12 rounded-full'
+						src={authorImage}
 						width={40}
 						height={40}
+						priority
+						fetchPriority='high'
 						alt='logo'
 					/>
-					<div className='w-0.5 h-28 bg-gray-600 '></div>
-					<div className='flex relative gap-1'>
+					<div className='h-28 w-0.5 bg-gray-600 '></div>
+					<div className=' flex w-full justify-center gap-1'>
 						{comments.slice(0, 2).map((comm, i) => (
 							<Image
-								className={`w-8 h-8 ${i > 0 ? '-translate-x-5 z-10' : ''}`}
+								className={`h-9 w-9 object-contain ${
+									i > 0 ? '-translate-x-4' : ''
+								}`}
 								src={comm}
 								width={40}
 								height={40}
@@ -37,24 +50,27 @@ export default function Card({ captions, authorLogo, authorName }: CardProps) {
 								key={i}
 							/>
 						))}
-						<p className='inline-flex justify-start items-center text-xs text-gray-500 gap-1'>
-							<span>{comments.length}</span> <span> replies</span>
-						</p>
 					</div>
 				</div>
-				<div className='max-w-lg flex flex-col'>
+				<div className='flex  flex-col'>
 					<h2 className='text-xl font-semibold'>{authorName}</h2>
-					<p className='text-sm text-gray-200 py-2 flex-1' title={captions}>
-						{captions.length >= 200
-							? `${captions.slice(0, 200)}......`
-							: captions}
+					<p
+						className='mb-auto max-w-lg flex-1 py-2 text-sm text-gray-200'
+						title={captions}
+					>
+						{captions.length > 200 ? `${captions.slice(0, 150)}....	` : captions}
+
+						{captions.length > 200 && (
+							<Link className='block pt-2' href={'/'}>
+								See thread
+							</Link>
+						)}
 					</p>
-					<div className='flex gap-3 items-center mt-3 pb-8'>
-						{actionsButtons.map((btn, i) => (
-							<button key={i} name={btn.label} title={btn.label}>
-								<Image src={btn.icon} width={30} height={30} alt='icon' />
-							</button>
-						))}
+					<div className='min-h-min'>
+						<p className='flex items-center justify-start gap-1 text-xs text-gray-500'>
+							<span>{comments.length}</span> <span> replies</span>
+						</p>
+						<ActionButton id={id} likes={likes} />
 					</div>
 				</div>
 			</div>
