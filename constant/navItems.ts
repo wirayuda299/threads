@@ -29,7 +29,7 @@ export const sidebarLinks = [
 		route: '/profile',
 		label: 'Profile',
 	},
-];
+] as const;
 
 export const profileTabs = [
 	{ value: 'threads', label: 'Threads', icon: '/assets/reply.svg' },

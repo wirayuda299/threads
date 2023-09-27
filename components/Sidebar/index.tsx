@@ -1,39 +1,10 @@
-'use client';
+import NavLink from './NavLink';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-import { sidebarLinks } from '@/constant';
 export default function Sidebar() {
-	const pathname = usePathname();
-
 	return (
-		<aside className='w-full bg-primary fixed z-20  bottom-0 h-20 md:h-screen md:max-w-[250px] md:static'>
-			<nav className='w-full h-full p-5'>
-				<ul className='w-full h-full flex md:flex-col justify-evenly items-center md:justify-start  gap-2 md:gap-6 '>
-					{sidebarLinks.map((item) => (
-						<Link
-							href={item.route}
-							className={` ${
-								pathname === item.route
-									? 'hover:bg-[#877eff]'
-									: 'hover:bg-[#877eff54]'
-							} ${
-								pathname === item.route ? 'bg-[#877eff]' : ''
-							} p-3 md:rounded-lg flex items-center gap-3 transition-all ease rounded-full duration-300 md:w-full`}
-							key={item.label}
-						>
-							<Image
-								src={item.imgURL}
-								width={30}
-								height={30}
-								alt={item.label}
-							/>
-							<span className='hidden md:block'>{item.label}</span>
-						</Link>
-					))}
-				</ul>
+		<aside className='fixed inset-x-0 bottom-0 z-20 h-20 bg-main md:static md:h-screen md:w-full md:max-w-[250px] '>
+			<nav className='h-full w-full p-5'>
+				<NavLink />
 			</nav>
 		</aside>
 	);

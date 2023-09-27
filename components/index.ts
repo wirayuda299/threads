@@ -1,19 +1,8 @@
-import FileUpload from './FileUpload';
-import Form from './Form';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Tabs from './Tabs';
-import ThreadUpload from './ThreadUpload';
-import Card from './Card';
-import SuggestedCommunities from './SuggestedCommunities/SuggestedCommunities';
-
-export {
-	Sidebar,
-	Header,
-	Form,
-	FileUpload,
-	Tabs,
-	ThreadUpload,
-	Card,
-	SuggestedCommunities,
-};
+export { default as Sidebar } from '@/components/Sidebar/index';
+export { default as Header } from '@/components/Header/index';
+export { default as SuggestedCommunities } from '@/components/SuggestedCommunities/SuggestedCommunities';
+export { default as FileUpload } from '@/components/FileUpload/FileUpload';
+export { default as ThreadUpload } from '@/components/ThreadUploadForm/ThreadUploadForm';
+export { default as Loader } from '@/components/Loader/Loader';
+export { default as Card } from '@/components/Card/index';
+export { default as Comment } from '@/components/Comment/Comment';
