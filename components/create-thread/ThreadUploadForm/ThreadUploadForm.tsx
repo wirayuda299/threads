@@ -2,9 +2,9 @@
 
 import { Button } from '@/components/ui/button';
 
-import { Textarea } from '../ui/textarea';
+import { Textarea } from '../../ui/textarea';
 import { createThread } from '@/serverAction/thread.action';
-import { toast } from '../ui/use-toast';
+import { toast } from '../../ui/use-toast';
 import { useRouter } from 'next/navigation';
 
 export default function ThreadUpload() {

@@ -26,13 +26,14 @@ export default function LikeButton({ id, likes }: LikeButtonProps) {
 			title={'like'}
 		>
 			<Image
+				className='aspect-auto object-contain'
 				src={
 					isLikeByCurrentUser
 						? '/assets/red-heart.svg'
 						: '/assets/heart-gray.svg'
 				}
-				width={30}
-				height={30}
+				width={25}
+				height={25}
 				alt='icon'
 			/>
 		</button>

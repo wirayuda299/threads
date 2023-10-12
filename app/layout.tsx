@@ -5,7 +5,6 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
-import { Header, Sidebar, SuggestedCommunities } from '@/components/index';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
@@ -15,20 +14,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<ClerkProvider>
-			<html lang='en'>
+		<html lang='en'>
+			<ClerkProvider>
 				<body>
-					<main className=' h-screen w-full max-w-[1470px] overflow-hidden bg-black text-white'>
-						<Header />
-						<section className='flex h-screen w-full'>
-							<Sidebar />
-							{children}
-							<SuggestedCommunities />
-						</section>
-					</main>
+					{children}
 					<Toaster />
 				</body>
-			</html>
-		</ClerkProvider>
+			</ClerkProvider>
+		</html>
 	);
 }

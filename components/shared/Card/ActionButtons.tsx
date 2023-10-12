@@ -9,7 +9,7 @@ type ActionButtonProps = {
 
 export default function ActionButton({ id, likes }: ActionButtonProps) {
 	return (
-		<div className='mt-3 inline-flex items-center gap-3 '>
+		<div className='mt-3 flex items-center gap-3 '>
 			<LikeButton id={id} likes={likes} />
 			<Link href={`/thread/${id}`}>
 				<Image
