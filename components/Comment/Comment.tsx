@@ -1,17 +1,22 @@
-'use client';
-
-import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
+
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { User, currentUser } from '@clerk/nextjs/server';
+import { postComments } from '@/actions/thread.action';
 
-export default function Comment() {
-	const { isLoaded, isSignedIn, user } = useUser();
+export default async function Comment({ id }: { id: string }) {
+	const user: User | null = await currentUser();
 
-	if (!isLoaded || !isSignedIn) return null;
+	if (!user) return null;
+
+	const makeComments = async (data: FormData) => {
+		'use server';
+		await postComments(data, user, id);
+	};
 
 	return (
-		<div className='flex items-center'>
+		<form className='flex items-center' action={makeComments}>
 			<Image
 				className='h-12 w-12 rounded-full'
 				src={user?.imageUrl}
@@ -20,11 +25,14 @@ export default function Comment() {
 				height={300}
 			/>
 			<Input
+				name='comment'
 				className='!border-none bg-transparent focus-visible:!ring-0 focus-visible:ring-offset-0'
 				autoFocus
 				placeholder='comment'
 			/>
-			<Button className='rounded-full bg-primary-500 px-8'>Reply</Button>
-		</div>
+			<Button type='submit' className='rounded-full bg-primary-500 px-8'>
+				Reply
+			</Button>
+		</form>
 	);
 }

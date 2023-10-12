@@ -7,4 +7,13 @@ export type Thread = {
 	userId: string | null;
 	createdAt: string;
 	likes: string[];
+	comments: {
+		id: string;
+		authorName: string;
+		authorImage: string;
+		createdAt: string;
+		comments: string;
+		threadId: string | null;
+		likes: string[];
+	}[];
 };

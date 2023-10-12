@@ -32,7 +32,7 @@ export default function SidebarItem({
 				height={30}
 				alt={label}
 			/>
-			<span className=' text-white md:block'>{label}</span>
+			<span className=' hidden text-white md:!block'>{label}</span>
 		</Link>
 	);
 }

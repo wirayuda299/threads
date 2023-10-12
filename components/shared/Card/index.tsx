@@ -3,12 +3,23 @@ import Link from 'next/link';
 
 import ActionButton from './ActionButtons';
 
+type Comments = {
+	id: string;
+	authorName: string;
+	authorImage: string;
+	createdAt: string;
+	comments: string;
+	threadId: string | null;
+	likes: string[];
+};
+
 type CardProps = {
 	captions: string;
 	authorName: string;
 	authorImage: string;
 	id: string;
 	likes: string[];
+	comments: Comments[];
 };
 
 export default function Card({
@@ -17,12 +28,8 @@ export default function Card({
 	authorName,
 	id,
 	likes,
+	comments,
 }: CardProps) {
-	const comments = [
-		'/assets/placeholder.png',
-		'/assets/placeholder.png',
-		'/assets/placeholder.png',
-	];
 	return (
 		<div className=' mt-5 min-h-min flex-1 overflow-hidden rounded-lg bg-main p-5'>
 			<div className='flex h-full justify-start gap-4'>
@@ -37,20 +44,22 @@ export default function Card({
 						alt='logo'
 					/>
 					<div className='h-28 w-0.5 bg-gray-600 '></div>
-					<div className=' flex w-full justify-center gap-1'>
-						{comments.slice(0, 2).map((comm, i) => (
-							<Image
-								className={`h-9 w-9 object-contain ${
-									i > 0 ? '-translate-x-4' : ''
-								}`}
-								src={comm}
-								width={40}
-								height={40}
-								alt='logo'
-								key={i}
-							/>
-						))}
-					</div>
+					{comments.length >= 1 && (
+						<div className=' flex w-full justify-center gap-1'>
+							{comments?.slice(0, 2).map((comm, i) => (
+								<Image
+									className={`h-9 w-9 rounded-full object-contain ${
+										i > 0 ? '-translate-x-4' : ''
+									}`}
+									src={comm.authorImage}
+									width={40}
+									height={40}
+									alt='logo'
+									key={comm.id}
+								/>
+							))}
+						</div>
+					)}
 				</div>
 				<div className='flex  flex-col'>
 					<h2 className='text-xl font-semibold'>{authorName}</h2>
@@ -67,9 +76,11 @@ export default function Card({
 						)}
 					</p>
 					<div className='min-h-min'>
-						<p className='flex items-center justify-start gap-1 text-xs text-gray-500'>
-							<span>{comments.length}</span> <span> replies</span>
-						</p>
+						{comments.length >= 1 && (
+							<p className='flex items-center justify-start gap-1 text-xs text-gray-500'>
+								<span>{comments.length}</span> <span> replies</span>
+							</p>
+						)}
 						<ActionButton id={id} likes={likes} />
 					</div>
 				</div>
