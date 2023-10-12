@@ -20,10 +20,12 @@ model Thread {
 }
 
 model Comments {
-  id          String  @id @default(cuid())
+  id          String   @id @default(cuid())
   authorName  String
   authorImage String
   createdAt   String
+  comments    String
   threadId    String?
-  Thread      Thread? @relation(fields: [threadId], references: [id])
+  likes       String[]
+  Thread      Thread?  @relation(fields: [threadId], references: [id])
 }

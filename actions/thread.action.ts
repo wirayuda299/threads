@@ -1,14 +1,19 @@
 'use server';
 
 import prisma from '@/lib/prismaClient';
-import { Thread } from '@/types/threads';
 import { currentUser } from '@clerk/nextjs';
+import { User } from '@clerk/nextjs/server';
+
+import { Thread } from '@/types/threads';
 
 export async function getThreads(): Promise<Thread[]> {
 	try {
 		const threads = await prisma?.thread.findMany({
 			orderBy: {
 				createdAt: 'desc',
+			},
+			include: {
+				comments: true,
 			},
 		});
 		return threads;
@@ -63,6 +68,9 @@ export const getThreadById = async (id: string) => {
 			where: {
 				id,
 			},
+			include: {
+				comments: true,
+			},
 		});
 
 		if (!thread) throw new Error('Thread not found');
@@ -70,4 +78,27 @@ export const getThreadById = async (id: string) => {
 	} catch (error) {
 		throw error;
 	}
+};
+
+export const postComments = async (
+	formData: FormData,
+	user: User,
+	id: string
+) => {
+	try {
+		if (!user) throw new Error('You must login to perform this action');
+		const comments = formData.get('comment') as string;
+
+		if (comments === '') return;
+
+		await prisma.comments.create({
+			data: {
+				createdAt: Date.now().toString(),
+				authorImage: user.imageUrl,
+				authorName: user.username!,
+				threadId: id,
+				comments,
+			},
+		});
+	} catch (error) {}
 };
