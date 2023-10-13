@@ -12,7 +12,6 @@ export const revalidate = 0;
 
 export default async function ThreadDetail({ params: { id } }: Params) {
 	const thread = await getThreadById(id);
-	console.log(thread);
 
 	return (
 		<ScrollArea className=' max-h-full w-full flex-1 px-8 pb-24 pt-8'>
@@ -24,7 +23,6 @@ export default async function ThreadDetail({ params: { id } }: Params) {
 				{thread.comments.map((comment) => (
 					<CommentCard
 						comment={comment}
-						comments={thread.comments}
 						authorImage={comment.authorImage}
 						authorName={comment.authorName}
 						key={comment.id}
