@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en'>
 			<ClerkProvider>
-				<body>
+				<body className='h-full w-full'>
 					{children}
 					<Toaster />
 				</body>

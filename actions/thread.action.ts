@@ -87,6 +87,7 @@ export const postComments = async (
 ) => {
 	try {
 		if (!user) throw new Error('You must login to perform this action');
+
 		const comments = formData.get('comment') as string;
 
 		if (comments === '') return;
