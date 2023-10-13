@@ -2,16 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import ActionButton from './ActionButtons';
-
-type Comments = {
-	id: string;
-	authorName: string;
-	authorImage: string;
-	createdAt: string;
-	comments: string;
-	threadId: string | null;
-	likes: string[];
-};
+import { Comments } from '@prisma/client';
 
 type CardProps = {
 	captions: string;
@@ -31,8 +22,8 @@ export default function Card({
 	comments,
 }: CardProps) {
 	return (
-		<div className=' mt-5 min-h-min flex-1 overflow-hidden rounded-lg bg-main p-5'>
-			<div className='flex h-full justify-start gap-4'>
+		<div className='rounded-lg bg-main p-5'>
+			<div className='flex justify-start gap-4'>
 				<div className=' flex min-w-[50px] flex-col items-center'>
 					<Image
 						className='mb-2 h-12 w-12 rounded-full'
@@ -61,16 +52,13 @@ export default function Card({
 						</div>
 					)}
 				</div>
-				<div className='flex  flex-col'>
+				<div className='flex flex-col'>
 					<h2 className='text-xl font-semibold'>{authorName}</h2>
-					<p
-						className='mb-auto max-w-lg flex-1 py-2 text-sm text-gray-200'
-						title={captions}
-					>
+					<p className='mb-auto max-w-lg flex-1 py-2 text-sm text-gray-200'>
 						{captions.length > 200 ? `${captions.slice(0, 150)}....	` : captions}
 
 						{captions.length > 200 && (
-							<Link className='block pt-2' href={'/'}>
+							<Link className='block pt-2' href={`/thread/${id}`}>
 								See thread
 							</Link>
 						)}

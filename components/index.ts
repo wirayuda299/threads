@@ -6,3 +6,4 @@ export { default as ThreadUpload } from '@/components/create-thread/ThreadUpload
 export { default as Loader } from '@/components/Loader/Loader';
 export { default as Card } from '@/components/shared/Card/index';
 export { default as Comment } from '@/components/Comment/Comment';
+export { default as CommentCard } from '@/components/Comment/Card';
