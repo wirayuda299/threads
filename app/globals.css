@@ -78,3 +78,25 @@
 	border-radius: 20px;
 	background-color: #3534348b;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.tox .tox-toolbar-overlord,
+.tox:not(.tox-tinymce-inline) .tox-editor-header,
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
+	background: #121417 !important;
+}
+.tox .tox-tbtn {
+	color: #fff !important;
+}
+.tox .tox-tbtn > span > svg {
+	fill: #fff !important;
+}

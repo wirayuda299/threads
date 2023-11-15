@@ -2,30 +2,34 @@
 
 import { User } from '@clerk/nextjs/server';
 import Image from 'next/image';
-
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { useTransition } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+
+import { Input } from './ui/input';
+import { Button } from './ui/button';
+import { postComments } from '@/lib/actions/thread.action';
+import { useUser } from '@clerk/nextjs';
 
 type FormCommentProps = {
-	makeComments: (data: FormData) => Promise<void>;
-	user: User | null;
+	id: string;
 };
 
-export default function FormComment({ makeComments, user }: FormCommentProps) {
+export default function FormComment({ id }: FormCommentProps) {
 	const [pending, startTransition] = useTransition();
+	const { user } = useUser();
 	const router = useRouter();
 
-	const postComments = (data: FormData) => {
+	const uploadComments = (data: FormData) => {
 		startTransition(async () => {
-			await makeComments(data).then(() => {
+			const comment = data.get('comment');
+			await postComments(comment as string, id).then(() => {
 				router.refresh();
 			});
 		});
 	};
+
 	return (
-		<form className='flex items-center' action={postComments}>
+		<form className='flex items-center' action={uploadComments}>
 			<Image
 				className='h-12 w-12 rounded-full'
 				src={user?.imageUrl!}

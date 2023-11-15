@@ -8,24 +8,37 @@ datasource db {
 }
 
 model Thread {
-  id          String     @id @default(cuid())
+  id          String    @id @default(cuid())
   authorName  String
   authorImage String
-  image       String?
   captions    String
   userId      String?
-  createdAt   String
-  comments    Comments[]
+  createdAt   DateTime  @default(now())
+  views       Int       @default(0)
   likes       String[]
+  comments    Comment[]
 }
 
-model Comments {
-  id          String   @id @default(cuid())
+model Comment {
+  id          String       @id @default(cuid())
   authorName  String
   authorImage String
-  createdAt   String
-  comments    String
-  threadId    String?
+  comment     String
+  userId      String?
+  createdAt   DateTime     @default(now())
   likes       String[]
-  Thread      Thread?  @relation(fields: [threadId], references: [id])
+  threadId    String?
+  Thread      Thread?      @relation(fields: [threadId], references: [id])
+  subComment  SubComment[]
+}
+
+model SubComment {
+  id          String   @id @default(cuid())
+  Comment     Comment? @relation(fields: [commentId], references: [id])
+  commentId   String?
+  authorName  String
+  authorImage String
+  comment     String
+  userId      String?
+  createdAt   DateTime @default(now())
 }

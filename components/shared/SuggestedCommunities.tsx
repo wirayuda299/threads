@@ -17,7 +17,7 @@ export default function SuggestedCommunities() {
 	];
 
 	return (
-		<aside className=' hidden min-w-[300px] bg-main p-5 lg:!block'>
+		<aside className=' hidden min-w-[300px] bg-main p-5 lg:!block lg:h-screen lg:sticky lg:top-0 lg:mt-20'>
 			<h2 className='pb-5 text-2xl font-semibold'>Suggested Communities</h2>
 			<ul className='flex flex-col gap-5'>
 				{communities.map((community) => (
