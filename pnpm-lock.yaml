@@ -31,7 +31,7 @@ dependencies:
     version: 4.3.0(react-dom@18.2.0)(react@18.2.0)
   '@uploadthing/react':
     specifier: ^5.6.1
-    version: 5.6.1(next@14.0.2)(react@18.2.0)(uploadthing@5.6.1)(zod@3.22.2)
+    version: 5.6.1(next@14.0.2)(react@18.2.0)(uploadthing@5.6.1)(zod@3.22.3)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -75,8 +75,8 @@ dependencies:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.3.5)
   zod:
-    specifier: ^3.22.2
-    version: 3.22.2
+    specifier: ^3.22.3
+    version: 3.22.3
 
 devDependencies:
   '@tailwindcss/typography':
@@ -1022,7 +1022,7 @@ packages:
     resolution: {integrity: sha512-UDySsPbdi7wp52WG7mp5CiZwaTvokDubqhm1xhFm73Bqhp0PsGbwSSF5PdCXH4fe8Y4EKGrMyWQ4i1fF9+DVVQ==}
     dev: false
 
-  /@uploadthing/react@5.6.1(next@14.0.2)(react@18.2.0)(uploadthing@5.6.1)(zod@3.22.2):
+  /@uploadthing/react@5.6.1(next@14.0.2)(react@18.2.0)(uploadthing@5.6.1)(zod@3.22.3):
     resolution: {integrity: sha512-uVd4I26OudpUcikobDFBMl9mG0vlhdXmK57oidCIrvfgNfKZOehpW+pqe1nUWE8HoYquJ1iK4OrmrfX8hOK2MA==}
     peerDependencies:
       next: '*'
@@ -1032,19 +1032,19 @@ packages:
       next:
         optional: true
     dependencies:
-      '@uploadthing/shared': 5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.2)
+      '@uploadthing/shared': 5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.3)
       attr-accept: 2.2.2
       file-selector: 0.6.0
       next: 14.0.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       tailwind-merge: 1.14.0
-      uploadthing: 5.6.1(zod@3.22.2)
+      uploadthing: 5.6.1(zod@3.22.3)
     transitivePeerDependencies:
       - '@uploadthing/mime-types'
       - zod
     dev: false
 
-  /@uploadthing/shared@5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.2):
+  /@uploadthing/shared@5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.3):
     resolution: {integrity: sha512-OxNXcL91BSyKhZ+j0N5ekFRpCTwWsAf8B1FzL1YePTrNhMA0ZdlYqsObMAr7/jeWTc/mGaRRV1zUL4HBevnE3Q==}
     peerDependencies:
       '@uploadthing/mime-types': ^0.2.0
@@ -1054,7 +1054,7 @@ packages:
         optional: true
     dependencies:
       '@uploadthing/mime-types': 0.2.1
-      zod: 3.22.2
+      zod: 3.22.3
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.11.2):
@@ -3465,11 +3465,11 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /uploadthing@5.6.1(zod@3.22.2):
+  /uploadthing@5.6.1(zod@3.22.3):
     resolution: {integrity: sha512-lWVMCoAmZ33mahV6NS7oW+eQl++jnYEuaR3zh9PlrEt6P8lkl3GPDUE5iWywBx+pK9HewIqZvaZXQvzKOjOlMg==}
     dependencies:
       '@uploadthing/mime-types': 0.2.1
-      '@uploadthing/shared': 5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.2)
+      '@uploadthing/shared': 5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.3)
     transitivePeerDependencies:
       - zod
     dev: false
@@ -3575,6 +3575,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  /zod@3.22.2:
-    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
+  /zod@3.22.3:
+    resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
     dev: false
