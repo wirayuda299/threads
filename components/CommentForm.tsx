@@ -1,6 +1,5 @@
 'use client';
 
-import { User } from '@clerk/nextjs/server';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
