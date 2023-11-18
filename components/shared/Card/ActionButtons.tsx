@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { actionsButtons } from '@/constants';
 import { useAuth } from '@clerk/nextjs';
 import { like } from '@/lib/actions/thread.action';
 import Link from 'next/link';
