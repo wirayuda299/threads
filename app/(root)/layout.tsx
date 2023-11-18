@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<main className=' h-screen w-full max-w-[1470px] overflow-hidden bg-black text-white'>
+		<main className=' h-full w-full max-w-[1470px] overflow-hidden bg-black text-white'>
 			<Header />
-			<section className='flex h-screen w-full'>
+			<section className='flex w-full h-screen'>
 				<Sidebar />
 				{children}
 				<SuggestedCommunities />

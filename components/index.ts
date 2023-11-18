@@ -1,9 +1,8 @@
-export { default as Sidebar } from '@/components/Sidebar/index';
-export { default as Header } from '@/components/Header/index';
-export { default as SuggestedCommunities } from '@/components/SuggestedCommunities/SuggestedCommunities';
-export { default as FileUpload } from '@/components/FileUpload/FileUpload';
-export { default as ThreadUpload } from '@/components/create-thread/ThreadUploadForm/ThreadUploadForm';
-export { default as Loader } from '@/components/Loader/Loader';
+export { default as Sidebar } from '@/components/shared/Sidebar';
+export { default as Header } from '@/components/shared/Header/index';
+export { default as SuggestedCommunities } from '@/components/shared/SuggestedCommunities';
+export { default as CreateThreadForm } from '@/components/CreateThreadForm';
+export { default as Loader } from '@/components/shared/Loader';
 export { default as Card } from '@/components/shared/Card/index';
-export { default as Comment } from '@/components/Comment/Comment';
-export { default as CommentCard } from '@/components/Comment/Card';
+export { default as CommentForm } from '@/components/CommentForm';
+export { default as Pagination } from '@/components/shared/Pagination';

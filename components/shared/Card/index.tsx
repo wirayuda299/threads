@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
-
+import parse from 'html-react-parser';
 import ActionButton from './ActionButtons';
-import { Comments } from '@prisma/client';
+import { Comment } from '@prisma/client';
+
+type CommentWithoutCreatedAt = Omit<Comment, 'createdAt'>;
 
 type CardProps = {
 	captions: string;
@@ -10,7 +11,8 @@ type CardProps = {
 	authorImage: string;
 	id: string;
 	likes: string[];
-	comments: Comments[];
+	comments: CommentWithoutCreatedAt[];
+	type: 'thread' | 'comment';
 };
 
 export default function Card({
@@ -20,11 +22,12 @@ export default function Card({
 	id,
 	likes,
 	comments,
+	type,
 }: CardProps) {
 	return (
-		<div className='rounded-lg bg-main p-5'>
+		<article className='rounded-lg bg-main p-5'>
 			<div className='flex justify-start gap-4'>
-				<div className=' flex min-w-[50px] flex-col items-center'>
+				<header className=' flex min-w-[50px] flex-col items-center'>
 					<Image
 						className='mb-2 h-12 w-12 rounded-full'
 						src={authorImage}
@@ -34,45 +37,41 @@ export default function Card({
 						fetchPriority='high'
 						alt='logo'
 					/>
-					<div className='h-28 w-0.5 bg-gray-600 '></div>
+					<div className='h-[calc(100%-100px)] w-0.5 bg-gray-600 '></div>
 					{comments.length >= 1 && (
 						<div className=' flex w-full justify-center gap-1'>
-							{comments?.slice(0, 2).map((comm, i) => (
+							{comments?.slice(0, 2).map((comment, i) => (
 								<Image
 									className={`h-9 w-9 rounded-full object-contain ${
 										i > 0 ? '-translate-x-4' : ''
 									}`}
-									src={comm.authorImage}
+									src={comment.authorImage}
 									width={40}
 									height={40}
 									alt='logo'
-									key={comm.id}
+									key={comment.id}
 								/>
 							))}
 						</div>
 					)}
-				</div>
+				</header>
 				<div className='flex flex-col'>
 					<h2 className='text-xl font-semibold'>{authorName}</h2>
-					<p className='mb-auto max-w-lg flex-1 py-2 text-sm text-gray-200'>
-						{captions.length > 200 ? `${captions.slice(0, 150)}....	` : captions}
-
-						{captions.length > 200 && (
-							<Link className='block pt-2' href={`/thread/${id}`}>
-								See thread
-							</Link>
-						)}
-					</p>
+					<div className='mb-auto w-full prose'>
+						<div className='prose-p:text-gray-200 prose-img:w-full prose-img:object-contain prose-strong:text-gray-200 prose-h2:font-semibold prose-h2:text-lg flex-1 py-2 text-sm prose-ul:text-gray-200 prose-li:text-gray-200 prose-code:text-inherit prose-a:text-blue-600'>
+							{parse(captions)}
+						</div>
+					</div>
 					<div className='min-h-min'>
-						{comments.length >= 1 && (
+						{comments.length > 0 && (
 							<p className='flex items-center justify-start gap-1 text-xs text-gray-500'>
 								<span>{comments.length}</span> <span> replies</span>
 							</p>
 						)}
-						<ActionButton id={id} likes={likes} />
+						<ActionButton id={id} likes={likes} type={type} />
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 }

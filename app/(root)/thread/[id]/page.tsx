@@ -1,6 +1,7 @@
-import { Card, Comment, CommentCard } from '@/components/index';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { getThreadById } from '@/actions/thread.action';
+import { notFound } from 'next/navigation';
+
+import { Card, CommentForm } from '@/components/index';
+import { getThreadById } from '@/lib/actions/thread.action';
 
 type Params = {
 	params: {
@@ -13,22 +14,19 @@ export const revalidate = 0;
 export default async function ThreadDetail({ params: { id } }: Params) {
 	const thread = await getThreadById(id);
 
+	if (!thread) return notFound();
+
 	return (
-		<ScrollArea className=' max-h-full w-full flex-1 px-8 pb-24 pt-8'>
-			<Card {...thread} comments={thread.comments} />
+		<div className='min-h-screen w-full flex-1 overflow-y-auto px-8 pb-24 pt-8'>
+			<Card type='thread' {...thread} key={thread.id} />
 			<section className='mt-8 border-y border-main py-5'>
-				<Comment id={id} />
+				<CommentForm id={id} />
 			</section>
 			<section className='mt-7 flex flex-col gap-5'>
-				{thread.comments.map((comment) => (
-					<CommentCard
-						comment={comment}
-						authorImage={comment.authorImage}
-						authorName={comment.authorName}
-						key={comment.id}
-					/>
+				{thread?.comments.map((comment) => (
+					<Card type='comment' {...thread} key={comment.id} />
 				))}
 			</section>
-		</ScrollArea>
+		</div>
 	);
 }

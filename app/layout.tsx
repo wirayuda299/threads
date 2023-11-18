@@ -1,11 +1,9 @@
-import './globals.css';
-import '@uploadthing/react/styles.css';
-
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import { Toaster } from '@/components/ui/toaster';
+import './globals.css';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -14,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang='en'>
-			<ClerkProvider>
+		<ClerkProvider>
+			<html lang='en'>
 				<body className='h-full w-full'>
 					{children}
 					<Toaster />
 				</body>
-			</ClerkProvider>
-		</html>
+			</html>
+		</ClerkProvider>
 	);
 }
